@@ -25,9 +25,9 @@ function user_table_shortcode($atts) {
     // Display the search form
     ?>
     <form method="get">
-      <label for="user-search">Search:</label>
+      <label for="user-search">Buscar:</label>
       <input type="text" name="user-search" id="user-search" value="<?php echo esc_attr(isset($_GET['user-search']) ? $_GET['user-search'] : ''); ?>">
-      <input type="submit" value="Search">
+      <input type="submit" value="Buscar">
     </form>
     <?php
   
@@ -38,8 +38,8 @@ function user_table_shortcode($atts) {
             <tr>
                 <th class="table_header">ID</th>
                 <th class="table_header">Email</th>
-                <th class="table_header">Username</th>
-                <th class="table_header">Actions</th>
+                <th class="table_header">Nome de Usuário</th>
+                <th class="table_header">Ações</th>
             </tr>
         </thead>
         <tbody>
