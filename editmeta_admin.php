@@ -8,6 +8,12 @@
 
 function edit_usermeta_shortcode() {
     if ( is_user_logged_in() ) {
+
+        //check if user is admin
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_redirect( home_url() );
+        }
+
         $shortcode_posts = get_posts( array(
             'posts_per_page' => -1, // get all posts
             'post_type'      => 'page', // only search pages
