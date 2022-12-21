@@ -1,12 +1,5 @@
 <?php
-/**
- * Plugin Name: Admin Edit Usermeta Shortcode
- * Version: 1.0
- * Author: João Lucas
- * Author URI: www.github.com/lucassdmp
- */
-
-function edit_usermeta_shortcode() {
+function edit_usermetaadmin_shortcode() {
     if ( is_user_logged_in() ) {
 
         //check if user is admin
@@ -110,12 +103,12 @@ function edit_usermeta_shortcode() {
     }
 }
 
-function create_editcsv_shotcode(){
+function create_editcsvadmin_shotcode(){
     ob_start();
-    edit_usermeta_shortcode();
+    edit_usermetaadmin_shortcode();
     return ob_get_clean();
 }
 
-add_shortcode('editmeta_admin', 'create_editcsv_shotcode');
+add_shortcode('editmeta_admin', 'create_editcsvadmin_shotcode');
 
 ?>

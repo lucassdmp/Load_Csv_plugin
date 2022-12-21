@@ -1,11 +1,4 @@
 <?php
-/**
- * Plugin Name: User Table
- * Description: Displays a table of all users.
- * Version: 1.0
- * Author: João Lucas
- * Author URI: www.github.com/lucassdmp
- */
 function user_table_shortcode($atts) {
     // Extract the attributes
     extract(shortcode_atts(array(), $atts));

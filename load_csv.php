@@ -1,12 +1,4 @@
 <?php
-/*
-Plugin Name: Load CSV to DB
-Plugin URI: 
-Description: Esse plugin cria uma aba de Administração para carregar um ficheiro CSV para a base de dados.
-Version: 1.0
-Author: João Lucas
-Author URI: https://github.com/lucassdmp
-*/
 
 function create_load_csv_menu(){
     add_menu_page('Load CSV', 'Load CSV', 'manage_options', 'load-csv-plugin', 'load_csv_options');
