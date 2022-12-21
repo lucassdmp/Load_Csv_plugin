@@ -67,8 +67,8 @@ function user_table_shortcode($atts) {
                                 // get the first post in the array
                                 $shortcode_post = $shortcode_posts[0];
                             }
-                            echo home_url() . '/' . $shortcode_post->post_name . '/?user_id=' . $user->ID ?>">Edit</a> |
-                        <a href="<?php echo esc_url(wp_nonce_url(add_query_arg(array('action' => 'delete', 'user' => $user->ID)), 'bulk-users')); ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                            echo home_url() . '/' . $shortcode_post->post_name . '/?user_id=' . $user->ID ?>">Editar</a> |
+                        <a href="<?php echo esc_url(wp_nonce_url(add_query_arg(array('action' => 'delete', 'user' => $user->ID)), 'bulk-users')); ?>" onclick="return confirm('Are you sure you want to delete this user?');">Deletar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
