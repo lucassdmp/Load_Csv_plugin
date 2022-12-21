@@ -72,5 +72,6 @@ function user_table_shortcode($atts) {
     // Return the output buffer
     return ob_get_clean();
 }
-add_shortcode('user_table', 'user_table_shortcode');
+
+add_shortcode('editmeta_admin', 'editmeta_admin_shortcode');
 ?>

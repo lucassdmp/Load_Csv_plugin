@@ -1,7 +1,37 @@
 <?php
-function edit_usermeta_shortcode($user = null) {
+function edit_usermetaadmin_shortcode() {
     if ( is_user_logged_in() ) {
-        $current_user = wp_get_current_user();
+
+        //check if user is admin
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_redirect( home_url() );
+        }
+
+        $shortcode_posts = get_posts( array(
+            'posts_per_page' => -1, // get all posts
+            'post_type'      => 'page', // only search pages
+            's'              => '[user_table]', // search for the shortcode
+          ) );
+          
+        // if any posts were found
+        if ( ! empty( $shortcode_posts ) ) {
+            // get the first post in the array
+            $shortcode_post = $shortcode_posts[0];
+        }          
+
+        // Get the user ID from the URL query string
+        if( ! isset( $_GET['user_id'] ) ) {
+            wp_redirect( home_url() .'/' .$shortcode_post->post_name);
+        }
+
+        $user_id = absint( $_GET['user_id'] ); // Sanitize the user ID
+
+        $current_user = get_user_by( 'ID', $user_id );// Get the user object
+
+        if ( ! $current_user ) { // Check if the user doesnt exists
+            wp_redirect( home_url() .'/' .$shortcode_post->post_name);
+        }
+
         if ( isset( $_POST['submit'] ) ) {
             update_user_meta( $current_user->ID, 'Nome', sanitize_text_field( $_POST['Nome'] ) );
             update_user_meta( $current_user->ID, 'Morada', sanitize_text_field( $_POST['Morada'] ) );
@@ -44,7 +74,7 @@ function edit_usermeta_shortcode($user = null) {
         echo '<p><label for="Nascimento">Data de Nascimento:</label><br /><input type="text" name="Nascimento" value="' . get_user_meta($current_user->ID, 'Nascimento', true ) . '" /></p>';
         echo '<p><label for="Nomecargo">Função:</label><br /><input type="text" name="Nomecargo" value="' . get_user_meta( $current_user->ID, 'Nomecargo', true ) . '" /></p>';
         echo '<p><label for="Tiposocio">Sócio Tipo:</label><br /><input type="text" name="Tiposocio" value="' . get_user_meta( $current_user->ID, 'Tiposocio', true ) . '" /></p>';
-        echo '<p><label for="Admissao">Data de Admissao:</label><br /><input type="text" name="Admissao" value="' . get_user_meta( $current_user->ID, 'Admissao', true ) . '" /></p>';
+        echo '<p><label for="Admissao">Data de Admissão:</label><br /><input type="text" name="Admissao" value="' . get_user_meta( $current_user->ID, 'Admissao', true ) . '" /></p>';
         echo '<p><label for="Activo">Activo:</label><br /><input type="text" name="Activo" value="' . get_user_meta( $current_user->ID, 'Activo', true ) . '" /></p>';
         echo '<p><label for="Pagamento">Pagamento:</label><br /><input type="text" name="Pagamento" value="' . get_user_meta( $current_user->ID, 'Pagamento', true ) . '" /></p>';
         echo '<p><label for="Valor">Valor:</label><br /><input type="text" name="Valor" value="' . get_user_meta( $current_user->ID, 'Valor', true ) . '" /></p>';
@@ -63,9 +93,9 @@ function edit_usermeta_shortcode($user = null) {
         echo '<p><label for="Titulo2">Título2:</label><br /><input type="text" name="Titulo2" value="' . get_user_meta( $current_user->ID, 'Titulo2', true ) . '" /></p>';
         echo '<p><label for="Joia">Jóia:</label><br /><input type="text" name="Joia" value="' . get_user_meta( $current_user->ID, 'Joia', true ) . '" /></p>';
         echo '<p><label for="Departamento">Departamento:</label><br /><input type="text" name="Departamento" value="' . get_user_meta( $current_user->ID, 'Departamento', true ) . '" /></p>';
-        echo '<p><label for="Cobranca">Cobranca:</label><br /><input type="text" name="Cobranca" value="' . get_user_meta( $current_user->ID, 'Cobranca', true ) . '" /></p>';
+        echo '<p><label for="Cobranca">Cobrança:</label><br /><input type="text" name="Cobranca" value="' . get_user_meta( $current_user->ID, 'Cobranca', true ) . '" /></p>';
         echo '<p><label for="Idade">Idade:</label><br /><input type="text" name="Idade" value="' . get_user_meta( $current_user->ID, 'Idade', true ) . '" /></p>';
-        echo '<p><label for="Datasaida">Datade Saída:</label><br /><input type="text" name="Datasaida" value="' . get_user_meta( $current_user->ID, 'Datasaida', true ) . '" /></p>';
+        echo '<p><label for="Datasaida">Data de Saída:</label><br /><input type="text" name="Datasaida" value="' . get_user_meta( $current_user->ID, 'Datasaida', true ) . '" /></p>';
         echo '<p><input type="submit" name="Guardar" value="Update" /></p>';
         echo '</form>';
     } else {
@@ -73,12 +103,10 @@ function edit_usermeta_shortcode($user = null) {
     }
 }
 
-function create_editcsv_shotcode(){
+function create_csvadmin_shotcode(){
     ob_start();
-    edit_usermeta_shortcode();
+    edit_usermetaadmin_shortcode();
     return ob_get_clean();
 }
-
-add_shortcode('editcsv', 'create_editcsv_shotcode');
 
 ?>
