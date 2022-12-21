@@ -30,7 +30,7 @@ function edit_usermetaadmin_shortcode() {
         if ( ! $current_user ) { // Check if the user doesnt exists
             wp_redirect( home_url() .'/' .$shortcode_post->post_name);
         }
-
+        
         if ( isset( $_POST['submit'] ) ) {
             update_user_meta( $current_user->ID, 'Nome', sanitize_text_field( $_POST['Nome'] ) );
             update_user_meta( $current_user->ID, 'Morada', sanitize_text_field( $_POST['Morada'] ) );

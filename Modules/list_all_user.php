@@ -11,8 +11,9 @@ function user_table_shortcode($atts) {
   
     // Query for users
     $args = array(
-      'orderby' => 'ID',
-      'order' => 'ASC',
+        'orderby' => 'meta_value',
+        'meta_key' => 'Socio',
+        'order' => 'ASC',
     );
     if (!empty($_GET['user-search'])) {
       $args['search'] = '*' . esc_attr($_GET['user-search']) . '*';
@@ -36,16 +37,25 @@ function user_table_shortcode($atts) {
     <table>
         <thead>
             <tr>
-                <th class="table_header">ID</th>
+                <th class="table_header">Sócio</th>
                 <th class="table_header">Email</th>
                 <th class="table_header">Nome de Usuário</th>
                 <th class="table_header">Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user) : ?>
+            <?php foreach ($users as $user) : 
+                $socio = intval(get_user_meta($user->ID, 'Socio', true));
+                // If the "Socio" field is not set, get the highest value and increase it by 1
+                if (empty($socio)) {
+                    global $wpdb;
+                    $highest_socio = $wpdb->get_var("SELECT MAX(meta_value) FROM {$wpdb->usermeta} WHERE meta_key = 'Socio'");
+                    $socio = $highest_socio + 1;
+                    update_user_meta($user->ID, 'Socio', $socio);
+                }
+                 ?>
                 <tr>
-                    <td class="table_field"><?php echo esc_html($user->ID); ?></td>
+                    <td class="table_field"><?php echo esc_html($socio); ?></td>
                     <td class="table_field"><?php echo esc_html($user->user_email); ?></td>
                     <td class="table_field"><?php echo esc_html($user->user_login); ?></td>
                     <td class="table_field">
