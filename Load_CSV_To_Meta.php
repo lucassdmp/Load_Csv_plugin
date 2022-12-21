@@ -97,34 +97,4 @@ function deleteEditCsvPage(){
 register_activation_hook(__FILE__, 'createEditCsvPage');
 register_deactivation_hook(__FILE__, 'deleteEditCsvPage');
 
-
-//create load_csv page
-include('Modules/load_csv.php');
-add_shortcode('load_csv', 'load_csv_options');
-
-function createLoadCsvPage(){
-    // Create a new page
-    $page_title = 'Carregar CSV';
-    $page_slug = 'load-csv';
-    $page_content = '[load_csv]';
-    $page_id = wp_insert_post(array(
-        'post_title' => $page_title,
-        'post_type' => 'page',
-        'post_name' => $page_slug,
-        'post_content' => $page_content,
-        'post_status' => 'publish',
-    ));
-}
-
-function deleteLoadCsvPage(){
-    // Get the page ID
-    $page_id = get_page_by_path('load-csv')->ID;
-
-    // Delete the page
-    wp_delete_post($page_id, true);
-}
-
-register_activation_hook(__FILE__, 'createLoadCsvPage');
-register_deactivation_hook(__FILE__, 'deleteLoadCsvPage');
-
 ?>
