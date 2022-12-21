@@ -97,4 +97,7 @@ function deleteEditCsvPage(){
 register_activation_hook(__FILE__, 'createEditCsvPage');
 register_deactivation_hook(__FILE__, 'deleteEditCsvPage');
 
+
+require_once('Modules/load_csv.php');
+
 ?>
