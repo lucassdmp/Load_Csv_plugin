@@ -1,11 +1,4 @@
 <?php
-
-function create_load_csv_menu(){
-    add_menu_page('Load CSV', 'Load CSV', 'manage_options', 'load-csv-plugin', 'load_csv_options');
-}
-
-add_action('admin_menu', 'create_load_csv_menu');
-
 function load_csv_options() {
     if (isset($_POST['submit'])) {
 
@@ -89,14 +82,12 @@ function load_csv_options() {
     }
     ?>
     <div>
-        <h1>Load CSV</h1>
         <form method="post" enctype="multipart/form-data">
-            <label for="file">Select a CSV file to upload:</label><br>
+            <label for="file">Escolha um arquivo para carregar:</label><br>
             <input type="file" name="file" id="file"><br>
             <input type="submit" value="Submit" name="submit">
         </form>
     </div>
     <?php
 }
-
 ?>

@@ -18,7 +18,6 @@ function edit_usermetaadmin_shortcode() {
             // get the first post in the array
             $shortcode_post = $shortcode_posts[0];
         }          
-
         // Get the user ID from the URL query string
         if( ! isset( $_GET['user_id'] ) ) {
             wp_redirect( home_url() .'/' .$shortcode_post->post_name);
@@ -62,8 +61,8 @@ function edit_usermetaadmin_shortcode() {
             update_user_meta( $current_user->ID, 'Cobranca', sanitize_text_field( $_POST['Cobranca'] ) );
             update_user_meta( $current_user->ID, 'Idade', sanitize_text_field( $_POST['Idade'] ) );
             update_user_meta( $current_user->ID, 'Datasaida', sanitize_text_field( $_POST['Datasaida'] ) );
-
             echo '<div class="success">Usermeta fields updated successfully.</div>';
+            wp_redirect( home_url() .'/' .$shortcode_post->post_name);
         }
 
         echo '<form method="post">';
