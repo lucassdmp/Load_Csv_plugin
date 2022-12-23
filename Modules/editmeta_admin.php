@@ -67,7 +67,21 @@ function edit_usermetaadmin_shortcode() {
             update_user_meta( $current_user->ID, 'Cobranca', sanitize_text_field( $_POST['Cobranca'] ) );
             update_user_meta( $current_user->ID, 'Idade', sanitize_text_field( $_POST['Idade'] ) );
             update_user_meta( $current_user->ID, 'Datasaida', sanitize_text_field( $_POST['Datasaida'] ) );
-            echo '<div class="success">Usermeta fields updated successfully.</div>';
+
+            $new_role = mb_strtolower(sanitize_text_field( $_POST['Tiposocio'] ));
+            var_dump($new_role);
+            $user_data = array(
+                'ID' => $current_user->ID,
+                'role' => $new_role
+            );
+            $result = wp_update_user($user_data);
+            if ( is_wp_error( $result ) ) {
+                // There was an error updating the user
+                $error_message = $result->get_error_message();
+                // Handle the error
+                echo $error_message;
+              }
+
             wp_redirect( home_url() .'/' .$shortcode_post->post_name);
         }
         ?>
@@ -98,8 +112,14 @@ function edit_usermetaadmin_shortcode() {
                     <br /><input type="text" name="Nomecargo" value="<?php echo get_user_meta( $current_user->ID, 'Nomecargo', true ) ?>" />
                 </p>
                 <p>
-                    <label for="Tiposocio">Sócio Tipo:</label>
-                    <br /><input type="text" name="Tiposocio" value="<?php echo get_user_meta( $current_user->ID, 'Tiposocio', true ) ?>" />
+                <label for="Tiposocio">Sócio Tipo:</label>
+                <br />
+                <select name="Tiposocio">
+                    <option value="Terapeuta" <?php if(get_user_meta( $current_user->ID, 'Tiposocio', true ) == 'Terapeuta') echo 'selected'; ?>>Terapeuta</option>
+                    <option value="Formador" <?php if(get_user_meta( $current_user->ID, 'Tiposocio', true ) == 'Formador') echo 'selected'; ?>>Formador</option>
+                    <option value="Subscriber" <?php if(get_user_meta( $current_user->ID, 'Tiposocio', true ) == 'Individual') echo 'selected'; ?>>Subscriber</option>
+                    <option value="Administrator" <?php if(get_user_meta( $current_user->ID, 'Tiposocio', true ) == 'Administrator') echo 'selected'; ?>>Administrator</option>
+                </select>                
                 </p>
                 <p>
                     <label for="Admissao">Data de Admissão:</label>
