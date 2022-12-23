@@ -47,6 +47,12 @@ function user_table_shortcode($atts) {
         'order' => 'ASC',
         'number' => 10,
         'offset' => ($paged - 1) * 10,
+        'search_columns' => array(
+            'user_login',
+            'user_nicename',
+            'user_email',
+            'user_url',
+        ),
     );
     if (!empty($_GET['user-search'])) {
       $args['search'] = '*' . esc_attr($_GET['user-search']) . '*';
