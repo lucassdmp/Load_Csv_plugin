@@ -100,4 +100,30 @@ register_deactivation_hook(__FILE__, 'deleteEditCsvPage');
 
 require_once('Modules/load_csv.php');
 
+
+function create_Formador_Role(){
+    add_role('formador', 'Formador', array(
+        'read' => true,
+        'edit_posts' => true,
+        'delete_posts' => true,
+        'upload_files' => true
+        ));
+}
+
+register_activation_hook(__FILE__, 'create_Formador_Role');
+
+function create_Terapeuta_Role(){
+    add_role('terapeuta', 'Terapeuta', array(
+        'read' => true,
+        'edit_posts' => true,
+        'delete_posts' => true,
+        'upload_files' => true
+        ));
+}
+
+register_activation_hook(__FILE__, 'create_Terapeuta_Role');
+
+include_once('Modules/redirect_user.php');
+add_shortcode('redirect_user', 'redirect_user_by_role');
+
 ?>
