@@ -1,4 +1,9 @@
 <?php
+
+function load_form_css(){
+    wp_enqueue_style('editform_css_form', plugins_url('css/edit_form.css', __FILE__));
+}
+add_action('wp_enqueue_scripts', 'load_form_css');
 function edit_usermeta_shortcode($user = null) {
     if ( is_user_logged_in() ) {
         $current_user = wp_get_current_user();
@@ -36,38 +41,133 @@ function edit_usermeta_shortcode($user = null) {
             echo '<div class="success">Usermeta fields updated successfully.</div>';
         }
 
-        echo '<form method="post">';
-        echo '<p><label for="Nome">Nome:</label><br /><input type="text" name="Nome" value="' . get_user_meta( $current_user->ID, 'Nome', true ) . '" /></p>';
-        echo '<p><label for="Morada">Morada:</label><br /><input type="text" name="Morada" value="' . get_user_meta( $current_user->ID, 'Morada', true ) . '" /></p>';
-        echo '<p><label for="Localidade">Localidade:</label><br /><input type="text" name="Localidade" value="' . get_user_meta( $current_user->ID, 'Localidade', true ) . '" /></p>';
-        echo '<p><label for="Codpostal">Código Postal:</label><br /><input type="text" name="Codpostal" value="' . get_user_meta( $current_user->ID, 'Codpostal', true ) . '" /></p>';
-        echo '<p><label for="Nascimento">Data de Nascimento:</label><br /><input type="text" name="Nascimento" value="' . get_user_meta($current_user->ID, 'Nascimento', true ) . '" /></p>';
-        echo '<p><label for="Nomecargo">Função:</label><br /><input type="text" name="Nomecargo" value="' . get_user_meta( $current_user->ID, 'Nomecargo', true ) . '" /></p>';
-        echo '<p><label for="Tiposocio">Sócio Tipo:</label><br /><input type="text" name="Tiposocio" value="' . get_user_meta( $current_user->ID, 'Tiposocio', true ) . '" /></p>';
-        echo '<p><label for="Admissao">Data de Admissao:</label><br /><input type="text" name="Admissao" value="' . get_user_meta( $current_user->ID, 'Admissao', true ) . '" /></p>';
-        echo '<p><label for="Activo">Activo:</label><br /><input type="text" name="Activo" value="' . get_user_meta( $current_user->ID, 'Activo', true ) . '" /></p>';
-        echo '<p><label for="Pagamento">Pagamento:</label><br /><input type="text" name="Pagamento" value="' . get_user_meta( $current_user->ID, 'Pagamento', true ) . '" /></p>';
-        echo '<p><label for="Valor">Valor:</label><br /><input type="text" name="Valor" value="' . get_user_meta( $current_user->ID, 'Valor', true ) . '" /></p>';
-        echo '<p><label for="Tel">Tel:</label><br /><input type="text" name="Tel" value="' . get_user_meta( $current_user->ID, 'Tel', true ) . '" /></p>';
-        echo '<p><label for="Tm">Tm:</label><br /><input type="text" name="Tm" value="' . get_user_meta( $current_user->ID, 'Tm', true ) . '" /></p>';
-        echo '<p><label for="Email">Email:</label><br /><input type="text" name="Email" value="' . get_user_meta( $current_user->ID, 'Email', true ) . '" /></p>';
-        echo '<p><label for="Internet">Internet:</label><br /><input type="text" name="Internet" value="' . get_user_meta( $current_user->ID, 'Internet', true ) . '" /></p>';
-        echo '<p><label for="Contribuinte">Contribuinte/CPF:</label><br /><input type="text" name="Contribuinte" value="' . get_user_meta( $current_user->ID, 'Contribuinte', true ) . '" /></p>';
-        echo '<p><label for="Nrbi">Nrbi:</label><br /><input type="text" name="Nrbi" value="' . get_user_meta( $current_user->ID, 'Nrbi', true ) . '" /></p>';
-        echo '<p><label for="Naturalidade">Naturalidade:</label><br /><input type="text" name="Naturalidade" value="' . get_user_meta( $current_user->ID, 'Naturalidade', true ) . '" /></p>';
-        echo '<p><label for="Nacionalidade">Nacionalidade:</label><br /><input type="text" name="Nacionalidade" value="' . get_user_meta( $current_user->ID, 'Nacionalidade', true ) . '" /></p>';
-        echo '<p><label for="Nib">Nib:</label><br /><input type="text" name="Nib" value="' . get_user_meta( $current_user->ID, 'Nib', true ) . '" /></p>';
-        echo '<p><label for="Banco">Banco:</label><br /><input type="text" name="Banco" value="' . get_user_meta( $current_user->ID, 'Banco', true ) . '" /></p>';
-        echo '<p><label for="Transferencia">Transferência:</label><br /><input type="text" name="Transferencia" value="' . get_user_meta( $current_user->ID, 'Transferencia', true ) . '" /></p>';
-        echo '<p><label for="Titulo1">Título1:</label><br /><input type="text" name="Titulo1" value="' . get_user_meta( $current_user->ID, 'Titulo1', true ) . '" /></p>';
-        echo '<p><label for="Titulo2">Título2:</label><br /><input type="text" name="Titulo2" value="' . get_user_meta( $current_user->ID, 'Titulo2', true ) . '" /></p>';
-        echo '<p><label for="Joia">Jóia:</label><br /><input type="text" name="Joia" value="' . get_user_meta( $current_user->ID, 'Joia', true ) . '" /></p>';
-        echo '<p><label for="Departamento">Departamento:</label><br /><input type="text" name="Departamento" value="' . get_user_meta( $current_user->ID, 'Departamento', true ) . '" /></p>';
-        echo '<p><label for="Cobranca">Cobranca:</label><br /><input type="text" name="Cobranca" value="' . get_user_meta( $current_user->ID, 'Cobranca', true ) . '" /></p>';
-        echo '<p><label for="Idade">Idade:</label><br /><input type="text" name="Idade" value="' . get_user_meta( $current_user->ID, 'Idade', true ) . '" /></p>';
-        echo '<p><label for="Datasaida">Datade Saída:</label><br /><input type="text" name="Datasaida" value="' . get_user_meta( $current_user->ID, 'Datasaida', true ) . '" /></p>';
-        echo '<p><input type="submit" name="Guardar" value="Update" /></p>';
-        echo '</form>';
+        ?>
+        <form method="post" class="forms">
+            <div class="form-column">
+                <p>
+                    <label for="Nome">Nome:</label>
+                    <br /><input type="text" name="Nome" value="<?php echo get_user_meta( $current_user->ID, 'Nome', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Morada">Morada:</label>
+                    <br /><input type="text" name="Morada" value="<?php echo get_user_meta( $current_user->ID, 'Morada', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Localidade">Localidade:</label>
+                    <br /><input type="text" name="Localidade" value="<?php echo get_user_meta( $current_user->ID, 'Localidade', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Codpostal">Código Postal:</label>
+                    <br /><input type="text" name="Codpostal" value="<?php echo get_user_meta( $current_user->ID, 'Codpostal', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Nascimento">Data de Nascimento:</label>
+                    <br /><input type="text" name="Nascimento" value="<?php echo get_user_meta($current_user->ID, 'Nascimento', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Nomecargo">Função:</label>
+                    <br /><input type="text" name="Nomecargo" value="<?php echo get_user_meta( $current_user->ID, 'Nomecargo', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Tiposocio">Sócio Tipo:</label>
+                    <br /><input type="text" name="Tiposocio" value="<?php echo get_user_meta( $current_user->ID, 'Tiposocio', true ) ?>" />
+                </p>
+                <p>
+                    <label for="Admissao">Data de Admissão:</label>
+                    <br /><input type="text" name="Admissao" value="<?php echo get_user_meta( $current_user->ID, 'Admissao', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Activo">Activo:</label>
+                    <br /><input type="text" name="Activo" value="<?php echo get_user_meta( $current_user->ID, 'Activo', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Pagamento">Pagamento:</label>
+                    <br /><input type="text" name="Pagamento" value="<?php echo get_user_meta( $current_user->ID, 'Pagamento', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Valor">Valor:</label>
+                    <br /><input type="text" name="Valor" value="<?php echo get_user_meta( $current_user->ID, 'Valor', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Tel">Tel:</label>
+                    <br /><input type="text" name="Tel" value="<?php echo get_user_meta( $current_user->ID, 'Tel', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Tm">Tm:</label>
+                    <br /><input type="text" name="Tm" value="<?php echo get_user_meta( $current_user->ID, 'Tm', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Email">Email:</label>
+                    <br /><input type="text" name="Email" value="<?php echo get_user_meta( $current_user->ID, 'Email', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Internet">Internet:</label>
+                    <br /><input type="text" name="Internet" value="<?php echo get_user_meta( $current_user->ID, 'Internet', true ) ?>" />
+                </p> 
+            </div>
+            <div class="form-column">
+                <p>
+                    <label for="Contribuinte">Contribuinte/CPF:</label>
+                    <br /><input type="text" name="Contribuinte" value="<?php echo get_user_meta( $current_user->ID, 'Contribuinte', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Nrbi">Nrbi:</label>
+                    <br /><input type="text" name="Nrbi" value="<?php echo get_user_meta( $current_user->ID, 'Nrbi', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Naturalidade">Naturalidade:</label>
+                    <br /><input type="text" name="Naturalidade" value="<?php echo get_user_meta( $current_user->ID, 'Naturalidade', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Nacionalidade">Nacionalidade:</label>
+                    <br /><input type="text" name="Nacionalidade" value="<?php echo get_user_meta( $current_user->ID, 'Nacionalidade', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Nib">Nib:</label>
+                    <br /><input type="text" name="Nib" value="<?php echo get_user_meta( $current_user->ID, 'Nib', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Banco">Banco:</label>
+                    <br /><input type="text" name="Banco" value="<?php echo get_user_meta( $current_user->ID, 'Banco', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Transferencia">Transferência:</label>
+                    <br /><input type="text" name="Transferencia" value="<?php echo get_user_meta( $current_user->ID, 'Transferencia', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Titulo1">Título1:</label>
+                    <br /><input type="text" name="Titulo1" value="<?php echo get_user_meta( $current_user->ID, 'Titulo1', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Titulo2">Título2:</label>
+                    <br /><input type="text" name="Titulo2" value="<?php echo get_user_meta( $current_user->ID, 'Titulo2', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Joia">Jóia:</label>
+                    <br /><input type="text" name="Joia" value="<?php echo get_user_meta( $current_user->ID, 'Joia', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Departamento">Departamento:</label>
+                    <br /><input type="text" name="Departamento" value="<?php echo get_user_meta( $current_user->ID, 'Departamento', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Cobranca">Cobrança:</label>
+                    <br /><input type="text" name="Cobranca" value="<?php echo get_user_meta( $current_user->ID, 'Cobranca', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Idade">Idade:</label>
+                    <br /><input type="text" name="Idade" value="<?php echo get_user_meta( $current_user->ID, 'Idade', true ) ?>" />
+                </p> 
+                <p>
+                    <label for="Datasaida">Data de Saída:</label>
+                    <br /><input type="text" name="Datasaida" value="<?php echo get_user_meta( $current_user->ID, 'Datasaida', true ) ?>" />
+                </p> 
+                <p>
+                    <input type="submit" name="submit" value="Guardar" />
+                </p> 
+            </div>
+        </form> 
+        <?php
     } else {
         echo 'Please log in to edit your usermeta fields.';
     }
