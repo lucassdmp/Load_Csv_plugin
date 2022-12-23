@@ -65,28 +65,12 @@ function edit_usermeta_shortcode($user = null) {
                     <br /><input type="text" name="Nascimento" value="<?php echo get_user_meta($current_user->ID, 'Nascimento', true ) ?>" />
                 </p>
                 <p>
-                    <label for="Nomecargo">Função:</label>
-                    <br /><input type="text" name="Nomecargo" value="<?php echo get_user_meta( $current_user->ID, 'Nomecargo', true ) ?>" />
-                </p>
-                <p>
-                    <label for="Tiposocio">Sócio Tipo:</label>
-                    <br /><input type="text" name="Tiposocio" value="<?php echo get_user_meta( $current_user->ID, 'Tiposocio', true ) ?>" />
-                </p>
-                <p>
                     <label for="Admissao">Data de Admissão:</label>
                     <br /><input type="text" name="Admissao" value="<?php echo get_user_meta( $current_user->ID, 'Admissao', true ) ?>" />
                 </p> 
                 <p>
                     <label for="Activo">Activo:</label>
                     <br /><input type="text" name="Activo" value="<?php echo get_user_meta( $current_user->ID, 'Activo', true ) ?>" />
-                </p> 
-                <p>
-                    <label for="Pagamento">Pagamento:</label>
-                    <br /><input type="text" name="Pagamento" value="<?php echo get_user_meta( $current_user->ID, 'Pagamento', true ) ?>" />
-                </p> 
-                <p>
-                    <label for="Valor">Valor:</label>
-                    <br /><input type="text" name="Valor" value="<?php echo get_user_meta( $current_user->ID, 'Valor', true ) ?>" />
                 </p> 
                 <p>
                     <label for="Tel">Tel:</label>
