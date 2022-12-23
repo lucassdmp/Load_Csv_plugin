@@ -1,0 +1,90 @@
+.whole_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.list_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.buscar {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.buscarbt {
+  width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none
+}
+
+.buscarbt:hover {
+  background-color: #45a049;
+}
+
+a.edit {
+  color: blue;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a.edit:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+a.delete {
+  color: red;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a.delete:hover {
+  color: darkred;
+  text-decoration: underline;
+}
