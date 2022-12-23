@@ -104,6 +104,12 @@ function user_table_shortcode($atts) {
                         $socio = $highest_socio + 1;
                         update_user_meta($user->ID, 'Socio', $socio);
                     }
+                    if(empty($user->roles)){
+                        $args = array(
+                            'ID' => $user->ID,
+                            'role' => (mb_strtolower(get_user_meta($user->ID, 'Tiposocio', true)) ? mb_strtolower(get_user_meta($user->ID, 'Tiposocio', true)) : 'subscriber'),
+                        );
+                    }
                     ?>
                     <tr>
                         <td class="table_field"><?php echo esc_html($socio); ?></td>
