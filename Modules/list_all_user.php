@@ -69,10 +69,10 @@ function user_table_shortcode($atts) {
             </form>
             <div class="pagination">
                 <?php if ($paged > 1) : ?>
-                    <a href="<?php echo add_query_arg(array('paged' => $paged - 1), get_permalink(get_the_ID())); ?>">Previous</a>
+                    <a href="<?php echo add_query_arg(array('paged' => $paged - 1), get_permalink(get_the_ID())); ?>">Anterior</a>
                 <?php endif; ?>
                 <?php if ($paged < $num_pages) : ?>
-                    <a href="<?php echo add_query_arg(array('paged' => $paged + 1), get_permalink(get_the_ID())); ?>">Next</a>
+                    <a href="<?php echo add_query_arg(array('paged' => $paged + 1), get_permalink(get_the_ID())); ?>">Proximo</a>
                 <?php endif; ?>
             </div>
         </div>
